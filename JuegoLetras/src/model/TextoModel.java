@@ -41,21 +41,21 @@ public class TextoModel {
             return 0;
         }
 
-        
-        if (regex.equals(PALABRASREG)) {
-            int conteo = 0;
-            boolean enPalabra = false;
-            for (char c : frase.toCharArray()) {
-                boolean esLetra = String.valueOf(c).matches(LETRASREG);
-                if (esLetra && !enPalabra) {
-                    conteo++;          
-                    enPalabra = true;
-                } else if (!esLetra) {
-                    enPalabra = false;  
-                }
-            }
-            return conteo; 
-        }
+        /*
+         * if (regex.equals(PALABRASREG)) {
+         * int conteo = 0;
+         * boolean enPalabra = false;
+         * for (char c : frase.toCharArray()) {
+         * boolean esLetra = String.valueOf(c).matches(LETRASREG);
+         * if (esLetra && !enPalabra) {
+         * conteo++;
+         * enPalabra = true;
+         * } else if (!esLetra) {
+         * enPalabra = false;
+         * }
+         * }
+         * return conteo;
+         * }*/
 
         
         String fraseLocal = this.frase.trim().replaceAll(regex, "");

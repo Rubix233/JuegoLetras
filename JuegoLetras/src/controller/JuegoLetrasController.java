@@ -47,6 +47,7 @@ public class JuegoLetrasController {
 
 
         SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 vista.actualizarContadores(vocales, letras, mayusculas, palabras);
             }
