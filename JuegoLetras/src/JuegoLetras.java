@@ -5,28 +5,47 @@
 
 /**
  *
- * @author Administrador
+ * @author Andy
  */
 public class JuegoLetras extends javax.swing.JFrame {
 
-    private Contador hiloContador;
+    private Contador hiloVocales,hiloLetras,hiloMayusculas,hiloPalabras;
     
     public JuegoLetras() {
         initComponents();
         
-        this.hiloContador = new Contador(this);
-        this.hiloContador.start();
+        this.hiloVocales = new Contador(this, Tipo.VOCALES);
+        this.hiloLetras = new Contador(this, Tipo.LETRAS);
+        this.hiloMayusculas = new Contador(this, Tipo.MAYUSCULAS);
+        this.hiloPalabras = new Contador(this, Tipo.PALABRAS);
+        
+        this.hiloVocales.start();
+        this.hiloLetras.start();
+        this.hiloMayusculas.start();
+        this.hiloPalabras.start();
     }
 
     public synchronized String getTexto(){
         return txtFrase.getText().trim().replaceAll("\\s+", " ");
     }
     
-    public synchronized void actualizarVentana(int vocales, int letras, int mayusculas, int palabras){
-        lblVocales.setText(String.valueOf(vocales));
-        lblLetras.setText(String.valueOf(letras));
-        lblMayusculas.setText(String.valueOf(mayusculas));
-        lblPalabras.setText(String.valueOf(palabras));
+    public synchronized void actualizarVentana(int x, Tipo tipo){
+        
+        switch (tipo){
+            case VOCALES:
+                lblVocales.setText(String.valueOf(x));
+                break;
+            case LETRAS:
+                lblLetras.setText(String.valueOf(x));
+                break;
+            case MAYUSCULAS:
+                lblMayusculas.setText(String.valueOf(x));
+                break;
+            case PALABRAS:
+                lblPalabras.setText(String.valueOf(x));
+                break;
+                
+        }
         
     }
     /**

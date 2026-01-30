@@ -9,32 +9,27 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Administrador
+ * @author Andy
  */
 public class Contador extends Thread{
     
     private JuegoLetras juegoLetras;
-    
-    private final String VOCALESREG = "(?i)[aeiouáéíóúü]";
-    private final String LETRASREG = "[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]";
-    private final String MAYUSREG = "[A-ZÑÁÉÍÓÚÜ]";
-    private final String PALABRASREG = " ";
-    
+    private Tipo tipo; 
     private String frase;
     
-    public Contador(JuegoLetras jl){
+    public Contador(JuegoLetras jl, Tipo tipo){
         this.juegoLetras = jl;
+        this.tipo = tipo;
     }
     
-    private int contar(String regex){
+    private int contar(){
+        
         if(this.frase == null || this.frase.isEmpty()) return 0;
+
+        int conteo = this.frase.length() - this.frase.trim().replaceAll(tipo.getTipo(), "").length();;
         
-        String fraseLocal = this.frase.trim().replaceAll(regex, "");
-        int conteo = this.frase.length() - fraseLocal.length();;
-        
-        if(regex.equals(this.PALABRASREG)) conteo++;
-        
-        
+        if(tipo.getTipo().equals(Tipo.PALABRAS.getTipo())) conteo++;
+                
         return conteo;
         
     }
@@ -44,7 +39,7 @@ public class Contador extends Thread{
         while(true){
             try {
                 this.frase = juegoLetras.getTexto();
-                juegoLetras.actualizarVentana(contar(VOCALESREG), contar(LETRASREG), contar(MAYUSREG), contar(PALABRASREG));
+                juegoLetras.actualizarVentana(contar(), this.tipo);
                 
                 Thread.sleep(200);
             } catch (InterruptedException ex) {
