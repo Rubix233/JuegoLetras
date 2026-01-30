@@ -41,27 +41,27 @@ public class TextoModel {
             return 0;
         }
 
-        // Caso especial: contar palabras (solo secuencias con letras)
+        
         if (regex.equals(PALABRASREG)) {
             int conteo = 0;
             boolean enPalabra = false;
             for (char c : frase.toCharArray()) {
                 boolean esLetra = String.valueOf(c).matches(LETRASREG);
                 if (esLetra && !enPalabra) {
-                    conteo++;           // Empieza nueva palabra
+                    conteo++;          
                     enPalabra = true;
                 } else if (!esLetra) {
-                    enPalabra = false;  // Termina palabra
+                    enPalabra = false;  
                 }
             }
-            return conteo;  // ← AÑADIR ESTO (evita que ejecute el código de abajo)
+            return conteo; 
         }
 
-        // Caso normal: vocales, letras, mayúsculas (tu código original)
+        
         String fraseLocal = this.frase.trim().replaceAll(regex, "");
         int conteo = this.frase.length() - fraseLocal.length();
 
-        if (regex.equals(PALABRASREG)) {  // ← Esta parte ya no se ejecutará para palabras
+        if (regex.equals(PALABRASREG)) {  
             conteo++;
         }
 
