@@ -1,3 +1,7 @@
+package view;
+
+
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -7,47 +11,22 @@
  *
  * @author Andy
  */
-public class JuegoLetras extends javax.swing.JFrame {
+public class JuegoLetrasView extends javax.swing.JFrame {
 
-    private Contador hiloVocales,hiloLetras,hiloMayusculas,hiloPalabras;
     
-    public JuegoLetras() {
+    
+    public JuegoLetrasView() {
         initComponents();
-        
-        this.hiloVocales = new Contador(this, Tipo.VOCALES);
-        this.hiloLetras = new Contador(this, Tipo.LETRAS);
-        this.hiloMayusculas = new Contador(this, Tipo.MAYUSCULAS);
-        this.hiloPalabras = new Contador(this, Tipo.PALABRAS);
-        
-        this.hiloVocales.start();
-        this.hiloLetras.start();
-        this.hiloMayusculas.start();
-        this.hiloPalabras.start();
     }
 
-    public synchronized String getTexto(){
-        return txtFrase.getText().trim().replaceAll("\\s+", " ");
+    public  String getTexto(){
+        return txtFrase.getText();
     }
     
-    public synchronized void actualizarVentana(int x, Tipo tipo){
-        
-        switch (tipo){
-            case VOCALES:
-                lblVocales.setText(String.valueOf(x));
-                break;
-            case LETRAS:
-                lblLetras.setText(String.valueOf(x));
-                break;
-            case MAYUSCULAS:
-                lblMayusculas.setText(String.valueOf(x));
-                break;
-            case PALABRAS:
-                lblPalabras.setText(String.valueOf(x));
-                break;
-                
-        }
-        
-    }
+    public void setVocales(String valor) { lblVocales.setText(valor); }
+    public void setLetras(String valor) { lblLetras.setText(valor); }
+    public void setMayusculas(String valor) { lblMayusculas.setText(valor); }
+    public void setPalabras(String valor) { lblPalabras.setText(valor); }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,38 +156,7 @@ public class JuegoLetras extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JuegoLetras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JuegoLetras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JuegoLetras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JuegoLetras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JuegoLetras().setVisible(true);
-                
-            }
-        });
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
